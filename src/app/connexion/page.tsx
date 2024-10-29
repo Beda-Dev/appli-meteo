@@ -1,6 +1,11 @@
 import Link from "next/link";
 
 export default function Inscription() {
+
+    
+
+
+
   return (
     <div className="flex justify-center items-center h-screen font-sans">
       
@@ -11,21 +16,31 @@ export default function Inscription() {
             <h1 className="text-2xl font-bold">connection</h1>
 
             <div className="username mb-4">
-              <label htmlFor="username" className="block text-sm font-medium ">Nom d'utilisateur</label>
-              <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" className="mt-1 block w-full p-2 border rounded-md text-black text-center" />
+              <label htmlFor="username" className="block text-sm font-medium ">Nom utilisateur</label>
+              <input type="text"
+                      name="username" 
+                      id="username" 
+                      placeholder="Nom d'utilisateur" 
+                      className="mt-1 block w-full p-2 border rounded-md text-black text-center"
+                      required
+                      />
             </div>
 
             <div className="password mb-4">
               <label htmlFor="PAssword" className="block text-sm font-medium ">Mot de passe</label>
-              <input type="password" name="PAssword" id="PAssword" className="mt-1 block w-full p-2 border text-black rounded-md" />
+              <input 
+                type="password" 
+                name="PAssword"
+                id="PAssword" 
+                className="mt-1 block w-full p-2 border text-black rounded-md" />
 
             </div>
 
             <div className="button">
-              <button  className="border rounded-lg p-2 w-full bg-blue-500 text-white">Se connecter</button>
-              <p className="mt-4">Vous êtes n'avez pas de compte ?</p>
+              <button  className="rounded-lg p-2 w-full bg-blue-500 text-white hover:bg-white hover:text-black">Se connecter</button>
+              <p className="mt-4">Vous n avez pas de compte ?</p>
               <Link href="/Inscription" className="underline">
-                S'inscrire
+                inscrire
               </Link>
             </div>
 

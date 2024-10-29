@@ -10,7 +10,7 @@ export default function Home() {
           <Link href={"/Inscription"}  className="px-6 py-2 rounded-lg bg-white/20 text-white border border-white/30 hover:bg-white/30 transition duration-300">
             
           Inscription</Link>
-          <Link href={"/Connexion"}  className="px-6 py-2 rounded-lg bg-white/20 text-white border border-white/30 hover:bg-white/30 transition duration-300">
+          <Link href={"/connexion"}  className="px-6 py-2 rounded-lg bg-white/20 text-white border border-white/30 hover:bg-white/30 transition duration-300">
             
           connexion</Link>
         </div>
