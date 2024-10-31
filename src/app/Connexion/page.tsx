@@ -60,7 +60,7 @@ export default function Connexion() {
             </div>
 
             <div className="password mb-4">
-              <label htmlFor="password" className="block text-sm font-medium ">Mot de passe</label>
+              <label htmlFor="password" className="b2lock text-sm font-medium ">Mot de passe</label>
               <input 
                 type="password" 
                 name="password"
