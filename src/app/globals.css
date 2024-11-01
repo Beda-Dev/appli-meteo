@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-body{
-  background: linear-gradient(#3b82f6, #01227a) ;
+body {
+  background-color: #346CB7;
+  background-image: url('../app/assets/cloud 3.png'),url('../app/assets/cloud.png');
+  background-repeat: no-repeat, no-repeat; /* Évite la répétition des images */
+  background-position: 0% -20%, 80% -15%; /* Positionne les images */
+  
 }

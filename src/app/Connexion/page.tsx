@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -38,7 +38,7 @@ export default function Connexion() {
 
 
   return (
-    <div className="flex justify-center items-center h-screen font-sans">
+    <div className="flex justify-center items-center h-screen font-sans bg-gradient-to-r from-blue-500 to-indigo-600">
       
         <div className="flex justify-center items-center gap-8 text-white px-10 py-8 w-50 rounded-lg bg-transparent-blur-sm shadow-lg">
           
@@ -76,7 +76,7 @@ export default function Connexion() {
 
                 type="submit"  
                 className="rounded-lg p-2 w-full bg-blue-500 text-white hover:bg-white hover:text-black">Se connecter</button>
-              <p className="mt-4">Vous n avez pas de compte ?</p>
+              <p className="mt-4">Vous navez pas de compte ?</p>
               <Link href="/Inscription" className="underline">
                 inscrire
               </Link>

@@ -68,7 +68,7 @@ export default function Inscription() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen font-sans">
+    <div className="flex justify-center items-center h-screen font-sans bg-gradient-to-r from-blue-500 to-indigo-600">
       <div className="flex justify-center items-center gap-8 text-white px-10 py-8 w-50 rounded-lg bg-transparent-blur-sm shadow-2xl">
         <div className="grid p-5 text-center gap-4">
           <p>Photo de profil</p>
