@@ -4,11 +4,12 @@ import Weather from "./weather";
 import { useState } from "react";
 
 
+
 export default function Dashbord() {
 
 
     const [nomville, setNomVille] = useState("");
-    const [ville , setVille] = useState("paris")
+    const [ville , setVille] = useState("abidjan")
 
     const handleKeyDown = (event : React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
