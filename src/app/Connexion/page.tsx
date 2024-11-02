@@ -38,7 +38,7 @@ export default function Connexion() {
 
 
   return (
-    <div className="flex justify-center items-center h-screen font-sans bg-gradient-to-r from-blue-500 to-indigo-600">
+    <div className=" flex justify-center items-center h-screen font-sans bg-gradient-to-r from-blue-500 to-indigo-600">
       
         <div className="flex justify-center items-center gap-8 text-white px-10 py-8 w-50 rounded-lg bg-transparent-blur-sm shadow-lg">
           

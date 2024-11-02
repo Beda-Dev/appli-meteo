@@ -16,6 +16,7 @@ interface api{
 
 }
 
+
 interface ReponseApiOpenweather {
     coord: {
         lon: number;
@@ -53,7 +54,8 @@ interface ReponseApiOpenweather {
     timezone: number;
     id: number;
     name: string;
-    cod: number;
+    cod: number | string;
+    message?:string
 }
 
 interface props{
@@ -120,47 +122,80 @@ export default function Weather({ville} : props){
 
 return(
 
-<div className="text-white border rounded-2xl bg-transparent backdrop-blur-lg w-96 h-64 ">
-    <h1 className="pl-2 mb-1 font-bold italic">Météo actuelle </h1>
+<div className=" border text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl w-96 h-64 ">
+    <h1 className="pl-3 mb-1 font-bold text-2xl italic">Météo actuelle </h1>
 
     <div >
-    <h3 className="pl-2">{resultat && tempsactuel ?(<p>{(tempsactuel.hours)+ConversionHeureSeconde(resultat.timezone)}h {tempsactuel.minutes}min</p>):(<p>chargement...</p>)}</h3>
-        {resultat && resultat.cod===200 ? (
-         
-<div className="rounded-md w-full h-48 grid grid-row-2 overflow">
-    <div className="flex">
-        <Image 
-            src={`/${resultat.weather[0].icon}.png`} 
-            alt= {resultat.name}
-            width={50} 
-            height={50} 
-            className="w-36 h-36" 
-        />
-        <div className="w-full h-full text-centet">
-            <h4>{resultat.name}</h4>
-            <h1 className="font-bold text-4xl">{(resultat.main.temp)}°C</h1> 
-            <h2>{resultat.weather[0].description}</h2>
-        </div>
-    </div>
-    <div className="flex">
-        <div className="w-1/4 text-center ">{resultat.main.pressure} hPa</div>
-        <div className="w-1/4 text-center flex flex-col items-center">
-            <Image 
-                src="/humidité.png" 
-                alt="Humidité" 
-                width={15} 
-                height={15} 
-                className="mb-1" 
-            />
-            <p>{resultat.main.humidity}%</p>
-        </div>
-        <div className="w-1/4 text-center">{resultat.wind.speed} km/h</div>
-        <div className="w-1/4 text-center">{resultat.visibility} m</div> 
-    </div>
-</div>
+    <h3 className="pl-2">
+        {resultat?.cod == 200 && tempsactuel ?(<p>{(tempsactuel.hours)+ConversionHeureSeconde(resultat.timezone)}h {tempsactuel.minutes}min</p>):
+        resultat?.cod === "404"? (<p>Aucun resultat</p>):(<p>Heure incorrect</p>)
+        }
+    </h3>
+        {resultat && resultat.cod === 200 ?(
+
+            <div className="rounded-md w-full h-48 grid grid-row-2 overflow">
+                <div className="flex">
+                    <Image 
+                        src={`/${resultat?.weather[0].icon}.png`} 
+                        alt= "meteo"
+                        width={50} 
+                        height={50} 
+                        className="w-36 h-36" 
+                    />
+                    <div className="w-full h-full text-right pr-5">
+                        <h4>{resultat?.name} , {resultat?.sys.country}</h4>
+                        <h1 className="font-bold text-4xl">{(resultat?.main.temp)}°C</h1> 
+                        <h2>{resultat?.weather[0].description}</h2>
+                    </div>
+                </div>
+                <div className="flex">
+                    <div className="w-1/4 text-center flex flex-col items-center ">
+                    <Image 
+                            src="/pressure.png" 
+                            alt="pression" 
+                            title="Pression Athmospherique"
+                            width={20} 
+                            height={20} 
+                            className="mb-1" 
+                        />
+
+                    <p>{resultat?.main.pressure} hPa</p></div>
+                    <div className="w-1/4 text-center flex flex-col items-center">
+                        <Image 
+                            src="/humidity.png" 
+                            alt="Humidité" 
+                            title="Humidité en pourcentage"
+                            width={20} 
+                            height={20} 
+                            className="mb-1" 
+                        />
+                        <p>{resultat?.main.humidity}%</p>
+                    </div>
+                    <div className="w-1/4 text-center flex flex-col items-center">
+                    <Image 
+                            src="/vent.png" 
+                            alt="vitesseVent" 
+                            width={20} 
+                            height={20} 
+                            title="Vitesse du vent"
+                            className="" 
+                        />
+                    <p>{resultat?.wind.speed} km/h</p></div>
+                    <div className="w-1/4 text-center flex flex-col items-center">
+                    <Image 
+                            src="/visibility.png" 
+                            alt="visibilité en mettre" 
+                            width={20} 
+                            height={20} 
+                            title="Visibilité en mettre"
+                            className="" 
+                        />
+                    <p>{resultat?.visibility} m</p></div> 
+                </div>
+            </div>
 
         ) :
-        resultat && resultat.cod === 404 ? (
+        resultat && resultat.cod === "404" ? (
             <div className="text-center">
                 <p>Opps !! ville non trouver , essayer avec une autre orthographe</p>
             </div>
