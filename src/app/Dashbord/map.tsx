@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const API = {
-    key: 'YOUR_API_KEY', // Remplace par ta clé API
-    url: '' 
+    key: 'AIzaSyA-gAfUSYia0I5lJ8Cpwsbx4qJfwXbGLd4',
 };
 
 interface Props {
@@ -24,7 +23,7 @@ export default function Maps({ Ville }: Props) {
     }, [Ville]);
 
     const dimension = {
-        width: '500px',
+        width: '550px',
         height: '250px'
     };
 
@@ -35,7 +34,7 @@ export default function Maps({ Ville }: Props) {
                     mapContainerStyle={dimension}
                     center={coordonnéMAPS || { lat: 5.3094, lng: -4.0197 }} 
                     zoom={10}
-                    mapContainerClassName="border rounded-2xl ml-2"
+                    mapContainerClassName="rounded-2xl "
                 >
                     {coordonnéMAPS && <Marker position={coordonnéMAPS} />}
                 </GoogleMap>

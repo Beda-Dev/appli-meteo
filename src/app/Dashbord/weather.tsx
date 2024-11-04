@@ -78,6 +78,21 @@ export default function Weather({ville} : props){
     const [tempsactuel, setTempsActuel] = useState<{ hours: number; minutes: number }>({ hours: 0, minutes: 0 });
     const [synchro , setSynchro] = useState<string>('')
 
+
+    const mettreAJourStockage = (nomVille: string, descriptionMeteo: string, icone: string) => {
+        const villesStockees = JSON.parse(sessionStorage.getItem('villes') || '[]');
+        const nouvelleVille = {
+            nom: nomVille,
+            description: descriptionMeteo,
+            icone: icone,
+        };
+    
+        villesStockees.push(nouvelleVille);
+    
+        sessionStorage.setItem('villes', JSON.stringify(villesStockees));
+    };
+
+
     useEffect(()=>{
         try {
             fetch( `${API.url}weather?q=${ville}&units=metric&lang=fr&APPID=${API.clé}`)
@@ -88,6 +103,7 @@ export default function Weather({ville} : props){
                     setSynchro(result.weather[0].description)
                     sessionStorage.setItem('coordonné' , JSON.stringify(result.coord))
                     sessionStorage.setItem('ville' , JSON.stringify(result.name))
+                    mettreAJourStockage(result.name, result.weather[0].description, result.weather[0].icon);
                   
 
 
@@ -124,8 +140,8 @@ export default function Weather({ville} : props){
 
 return(
 
-<div className="text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl w-96 h-64 ">
-    <h1 className="pl-3 mb-1 font-bold text-2xl italic">Météo actuelle </h1>
+<div className="text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl w-72 h-64 ">
+    <h1 className="pl-3 mb-1  text-2xl italic">Météo actuelle </h1>
 
     <div >
     <h3 className="pl-2">
@@ -139,17 +155,18 @@ return(
                 <div className="flex">
                     <Image 
                         src={`/${resultat?.weather[0].icon}.png`} 
-                        alt= "meteo"
+                        alt="meteo"
                         width={50} 
                         height={50} 
-                        className="w-36 h-36" 
+                        className="w-36 h-36 " 
                     />
-                    <div className="w-full h-full text-right pr-5">
-                        <h4>{resultat?.name} , {resultat?.sys.country}</h4>
-                        <h1 className="font-bold text-4xl">{(resultat?.main.temp)}°C</h1> 
-                        <h2>{resultat?.weather[0].description}</h2>
+                    <div className="w-full h-full text-left pl-4 flex flex-col justify-top-left">
+                        <h4>{resultat?.name}, {resultat?.sys.country}</h4>
+                        <h1 className="text-5xl">{Math.round(resultat?.main.temp)}°C</h1> 
+                        <h2 className="text-center">{resultat?.weather[0].description}</h2>
                     </div>
                 </div>
+
                 <div className="flex">
                     <div className="w-1/4 text-center flex flex-col items-center ">
                     <Image 
