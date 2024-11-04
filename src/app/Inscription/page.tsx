@@ -43,6 +43,7 @@ export default function Inscription() {
 
   const [valeurUtilisateur, setValeurUtilisateur] = useState<{ username: string; password: string ; profil : string}>({ username: '', password: '', profil : '' });
   const [verificationPassword, setVerificationPassword] = useState<string>('');
+  const [erreurpassword , setErreurpassword] = useState<string | null >(null)
 
   const router = useRouter()
 
@@ -56,9 +57,16 @@ export default function Inscription() {
       setVerificationPassword('')
       SetVisualisation(null)
       router.push('/Dashbord')
+      const utilisateurConnecter = valeurUtilisateur
+      sessionStorage.setItem('utilisateur connecter' , JSON.stringify(utilisateurConnecter))
       
     } else {
       window.alert("Mot de passe incohérent");
+      setErreurpassword("Les mots de passe de correspondent pas")
+      setTimeout(()=>{
+        setErreurpassword(null)
+      },5000)
+      setValeurUtilisateur({username : '' , password : '' , profil :''})
     }
   };
 
@@ -131,6 +139,7 @@ export default function Inscription() {
               className="mt-1 block w-full p-2 border text-black rounded-md text-center"
             />
           </div>
+          {erreurpassword&&(<h5 className="text-red-500">{erreurpassword}</h5>)}
           <div className="button">
             <button type="submit" className="rounded-lg p-2 w-full bg-blue-500 text-white">
               Inscrire

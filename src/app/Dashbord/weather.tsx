@@ -86,6 +86,8 @@ export default function Weather({ville} : props){
                     setResultat(result)
                     console.log(result)
                     setSynchro(result.weather[0].description)
+                    sessionStorage.setItem('coordonné' , JSON.stringify(result.coord))
+                    sessionStorage.setItem('ville' , JSON.stringify(result.name))
                   
 
 
@@ -99,7 +101,7 @@ export default function Weather({ville} : props){
 
     } , [ville ,synchro])
 
-    // Hook pour obtenir l'heure actuelle
+    
     useEffect(() => {
         const MiseAjourTemps = () => {
             const now = new Date();
@@ -122,7 +124,7 @@ export default function Weather({ville} : props){
 
 return(
 
-<div className=" border text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl w-96 h-64 ">
+<div className="text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl w-96 h-64 ">
     <h1 className="pl-3 mb-1 font-bold text-2xl italic">Météo actuelle </h1>
 
     <div >

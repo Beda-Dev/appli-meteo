@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 export default function Connexion() {
 
   const [login, setLogin] = useState<{ username: string; password: string }>({ username: '', password: '' });
+  const [erreur , seterreur] = useState<string | null> (null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
@@ -22,9 +23,21 @@ export default function Connexion() {
         const value = JSON.parse(localStorage.getItem(key) as string)
         if((login.username === key ) && login.username === value.username && login.password === value.password){
           console.log(`utilisateur trouvé ${key} password= ${value.password}`)
-          router.push('/Dashbord')
+          router.push(
+            '/Dashbord');
+            const utilisateurConnecter = login
+            sessionStorage.setItem('utilisateur connecter' , JSON.stringify(utilisateurConnecter))
 
           break
+        }
+        else {
+          console.log("nom d'utilisateur ou mot de passe incorrecte")
+          seterreur("nom d'utilisateur ou mot de passe incorrect")
+          setTimeout(() => {
+            seterreur(null);
+          }, 3000);
+          setLogin({username : '' , password : ''})
+          
         }
         
       }
@@ -45,6 +58,7 @@ export default function Connexion() {
           <form onSubmit={handleSubmit} className=" text-center p-10 space-y-4 rounded-lg">
 
             <h1 className="text-2xl font-bold">connection</h1>
+            {erreur && (<p className="text-red-500">{erreur}</p>)}
 
             <div className="username mb-4">
               <label htmlFor="username" className="block text-sm font-medium ">Nom utilisateur</label>
