@@ -5,6 +5,7 @@ import { useState , useEffect} from "react";
 import Link from "next/link";
 import Maps from "./map";
 import ListeVille from "./villePopulaire";
+import Prevision from "./prevision";
 
 interface utilisateur{
     username : string,
@@ -35,10 +36,10 @@ export default function Dashbord() {
     } , [])
 
 
-    return (<div className="bg-transparent rounded-lg grid grid-cols-[64px_300px_1fr_390px] grid-row-[256px_256px_256px]">
+    return (<div className="bg-transparent rounded-lg grid grid-cols-[64px_300px_1fr_300px] grid-row-[256px_256px_256px]">
   
             
-                <div className="border text-center bg-transparent backdrop-blur-lg  text-white w-16 h-screen rounded-lg p-1 row-start-1 col-start-1 row-span-3 mb-4">
+                <div className="text-center bg-transparent backdrop-blur-lg  text-white w-16 h-full rounded-lg p-1 row-start-1 col-start-1 row-span-3 mb-4">
                     <ul className=" space-y-2">
                         <li className="flex "> <Image src="/logo.png" alt="Logo" width={35} height={35} className="pb-7 pt-4 mx-auto" /> </li>
                         <li className="flex p-4 justify-center items-center rounded-lg hover:bg-blue-900"><Image src="/menu.png" alt="Logo" width={70} height={70} className="pb-2 rounded-mg hover:bg-blue-900 mx-auto  duration-200 transform  hover:scale-y-150" /></li>
@@ -48,7 +49,7 @@ export default function Dashbord() {
                     
                 
                 </div>
-                <div className="bg-transparent backdrop-blur-md h-20 w-full py-4 px-1 row-start-1 col-start-2 col-span-3 flex relative ml-2">
+                <div className="bg-transparent backdrop-blur-md h-20 w-full py-4 px-1 row-start-1 col-start-2 col-span-3 flex relative ml-2 ">
                         <div className="relative flex ">
                             <input
                                 type="text"
@@ -62,14 +63,14 @@ export default function Dashbord() {
                             />
                             <Image src="/loupe.png" alt="Logo" width={22} height={22} className="absolute top-3 left-1 opacity-3" />
                         </div>
-                        <div className="absolute bottom-6 right-0 bg-transparent flex">
-                            <Image src="/alarm.png" alt="Logo" width={25} height={25}  className="rounded-full"/>
-                            <Link href="/profile"><Image 
+                        <div className="absolute bottom-6 right-5 bg-transparent flex">
+                            <Image src="/alarm.png" alt="Logo" width={30} height={30}  className="mr-auto rounded-full hover:bg-blue-900"/>
+                            <Link href="/profile"  className=" ml-4"><Image 
                                 src={utilisateurconnecter?.profil}
                                 alt="user" 
-                                width={30} 
-                                height={30} 
-                                className="mr-7 ml-3 rounded-full shadow-sm"
+                                width={40} 
+                                height={40} 
+                                className="rounded-full shadow-sm ml-auto shadow-lg"
                                 title={utilisateurconnecter?.username}
                                 
                                 /></Link>
@@ -85,13 +86,14 @@ export default function Dashbord() {
 
                 </div>
                <div className="col-start-4 row-start-2">
-                <ListeVille ville={ville}/>
+                <ListeVille />
                     
                 </div>
-                 {/*<div className="col-start-2 row-start-3">
+                 <div className="col-start-2 row-start-3">
+                    <Prevision ville={ville}/>
                     
                 </div>
-                <div className="col-start-3 row-start-3">
+                {/*<div className="col-start-3 row-start-3">
                     
                 </div>
                 <div className="col-start-4 row-start-3">

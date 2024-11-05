@@ -154,7 +154,7 @@ return(
             <div className="rounded-md w-full h-48 grid grid-row-2 overflow">
                 <div className="flex">
                     <Image 
-                        src={`/${resultat?.weather[0].icon}.png`} 
+                        src={`https://openweathermap.org/img/wn/${resultat?.weather[0].icon}.png`} 
                         alt="meteo"
                         width={50} 
                         height={50} 
@@ -178,7 +178,7 @@ return(
                             className="mb-1" 
                         />
 
-                    <p>{resultat?.main.pressure} hPa</p></div>
+                    <p className="text-sm">{resultat?.main.pressure} hPa</p></div>
                     <div className="w-1/4 text-center flex flex-col items-center">
                         <Image 
                             src="/humidity.png" 
@@ -188,7 +188,7 @@ return(
                             height={20} 
                             className="mb-1" 
                         />
-                        <p>{resultat?.main.humidity}%</p>
+                        <p className="text-sm">{resultat?.main.humidity}%</p>
                     </div>
                     <div className="w-1/4 text-center flex flex-col items-center">
                     <Image 
@@ -199,7 +199,7 @@ return(
                             title="Vitesse du vent"
                             className="" 
                         />
-                    <p>{resultat?.wind.speed} km/h</p></div>
+                    <p className="text-sm">{resultat?.wind.speed} km/h</p></div>
                     <div className="w-1/4 text-center flex flex-col items-center">
                     <Image 
                             src="/visibility.png" 
@@ -209,7 +209,7 @@ return(
                             title="Visibilité en mettre"
                             className="" 
                         />
-                    <p>{resultat?.visibility} m</p></div> 
+                    <p className="text-sm">{resultat?.visibility} m</p></div> 
                 </div>
             </div>
 

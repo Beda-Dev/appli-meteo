@@ -15,15 +15,25 @@ export default function Maps({ Ville }: Props) {
     const [coordonnéMAPS, setCoordonnéMAPS] = useState<{ lat: number; lng: number } | null>(null);
 
     useEffect(() => {
-        const stockageCoordonné = sessionStorage.getItem("coordonné");
-        if (stockageCoordonné) {
-            const parsedCoordonné = JSON.parse(stockageCoordonné);
-            setCoordonnéMAPS({ lat: parsedCoordonné.lat, lng: parsedCoordonné.lon });
+        
+        const recuperation=()=>{
+            const stockageCoordonné = sessionStorage.getItem("coordonné");
+            if (stockageCoordonné) {
+                const parsedCoordonné = JSON.parse(stockageCoordonné);
+                setCoordonnéMAPS({ lat: parsedCoordonné.lat, lng: parsedCoordonné.lon });
+            }
+
         }
+        setTimeout(()=>{
+            recuperation()
+          },200)
+
+        
+       
     }, [Ville]);
 
     const dimension = {
-        width: '550px',
+        width: '600px',
         height: '250px'
     };
 
