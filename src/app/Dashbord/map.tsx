@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const API = {
-    key: 'AIzaSyA-gAfUSYia0I5lJ8Cpwsbx4qJfwXbGLd4',
+    key: process.env.NEXT_PUBLIC_API_KEY_MAPS as string,
 };
 
 interface Props {

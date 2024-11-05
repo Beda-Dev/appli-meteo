@@ -64,8 +64,8 @@ interface props{
 
 
 const API:api = {
-clé : "9e3c46f5b40930a425ae54e3e5955572",
-url : "https://api.openweathermap.org/data/2.5/" 
+clé : process.env.NEXT_PUBLIC_API_KEY_WEATHER as string,
+url : process.env.NEXT_PUBLIC_API_URL_WEATHER as string
 }
 
 
