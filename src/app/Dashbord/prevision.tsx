@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Button from "./button";
 
 // Les interfaces de réponses (inchangées)
 interface ReponseApiOpenweather {
@@ -78,6 +77,7 @@ export default function Prevision({ ville }: Props) {
     const [previsionsParJour, setPrevisionsParJour] = useState<WeatherForecast[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [jourSelectionne, setJourSelectionne] = useState<number>(3)
 
     useEffect(() => {
         const fetchWeatherData = async () => {
@@ -91,7 +91,7 @@ export default function Prevision({ ville }: Props) {
                 const result: ReponseApiOpenweather = await response.json();
 
                 if (result.cod !== "200") {
-                    setError("Ville non trouvée ou problème avec l'API.");
+                    setError("Ville non trouvée.");
                     setLoading(false);
                     return;
                 }
@@ -124,28 +124,39 @@ export default function Prevision({ ville }: Props) {
         fetchWeatherData();
     }, [ville]);
 
+    const filteredPrevisions = previsionsParJour.slice(0, jourSelectionne)
+
     if (loading) {
-        return <div className="border rounded-3xl text-white p-2 h-80  w-72">Chargement des données...</div>;
+        return <div className=" rounded-3xl text-white p-2 h-80  w-72 bg-white bg-opacity-20">Chargement des données...</div>;
     }
 
     if (error) {
-        return <div className="border rounded-3xl text-white p-2   w-72">{error}</div>;
+        return <div className=" rounded-3xl text-white text-center p-2  h-80 w-72 bg-white bg-opacity-20">{error}</div>;
     }
 
     return (
-        <div className="rounded-3xl text-white p-2 h-80 w-72 h-90 mt-2 bg-white bg-opacity-20">
+        <div className="rounded-3xl text-white p-2 max-h-[324px] min-h-[324px] max-w-72 h-90 bg-white bg-opacity-20">
             {resultat ? (
                 <div className="">
                     <div className="flex my-1">
                         <h2 className="ml-3">Prévisions </h2>
-                        <Button />
+                        <ul className="menu menu-horizontal bg-blue-900 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm px-[1] py-[1]">
+                            <li><button
+                                 onClick={() => setJourSelectionne(3)}
+                                className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]">3 jours</button> </li>
+                            <li><button 
+                                 onClick={() => setJourSelectionne(previsionsParJour.length)}
+                                className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]">6 jours</button></li>
+                            
+                        </ul>
+                        
                     </div>
                    
-                    <ul>
-                        {previsionsParJour.length > 0 ? (
-                            previsionsParJour.map((prevision, index) => (
-                                <div key={index}>
-                                    <li className="rounded-lg flex items-center justify-center text-sm  hover:bg-blue-900 hover:bg-opacity-50">
+                    <ul className="">
+                        {filteredPrevisions.length > 0 ? (
+                            filteredPrevisions.map((prevision, index) => (
+                                <div key={index} className="flex flex-col  justify-center">
+                                    <li title={`date : ${new Date(prevision.dt * 1000).toLocaleDateString("fr-FR") } , Meteo :${prevision.weather[0].description}`} className="rounded-lg flex items-center justify-center text-sm  hover:bg-blue-900 hover:bg-opacity-50">
                                         <Image
                                             src={`/${prevision.weather[0].icon}.png`}
                                             alt={prevision.weather[0].description}
@@ -167,7 +178,7 @@ export default function Prevision({ ville }: Props) {
                     </ul>
                 </div>
             ) : (
-                <div>Ville inconnue</div>
+                <div className="h-80">Ville inconnue</div>
             )}
         </div>
     );

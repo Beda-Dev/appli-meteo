@@ -140,45 +140,47 @@ export default function Weather({ville} : props){
 
 return(
 
-<div className="text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl w-72 h-64 ">
-    <h1 className="pl-3 mb-1  text-2xl italic">Météo actuelle </h1>
+<div className=" text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl max-w-[500px] max-h-[250px] min-h-[250px] p-2">
+    <h1 className="pl-3 mt-0 text-2xl italic">Météo actuelle </h1>
 
-    <div >
-    <h3 className="pl-2">
-        {resultat?.cod == 200 && tempsactuel ?(<p>{(tempsactuel.hours)+ConversionHeureSeconde(resultat.timezone)}h {tempsactuel.minutes}min</p>):
-        resultat?.cod === "404"? (<p>Aucun resultat</p>):(<p>Heure incorrect</p>)
+    <div className="pb-1">
+    <h3 className="pl-2 text-sm font-sans font-light">
+        {resultat?.cod == 200 && tempsactuel ?(<p>{(tempsactuel.hours)+ConversionHeureSeconde(resultat.timezone)}h : {tempsactuel.minutes}min</p>):
+        resultat?.cod === "404"? (<p>Aucun resultat</p>):(<p>....</p>)
         }
     </h3>
         {resultat && resultat.cod === 200 ?(
 
-            <div className="rounded-md w-full h-48 grid grid-row-2 overflow">
+            <div className="rounded-md w-full h-48 grid grid-row-2 overflow ">
+                
                 <div className="flex">
                     <Image 
-                        src={`https://openweathermap.org/img/wn/${resultat?.weather[0].icon}.png`} 
+                        src={`/${resultat?.weather[0].icon}.png`} 
+                        
                         alt="meteo"
                         width={50} 
                         height={50} 
-                        className="w-36 h-36 " 
+                        className="w-40 h-40 m-[-20]" 
                     />
-                    <div className="w-full h-full text-left pl-4 flex flex-col justify-top-left">
+                    <div className="max-w-full max-h-full text-left pl-4 flex flex-col justify-top-left">
                         <h4>{resultat?.name}, {resultat?.sys.country}</h4>
-                        <h1 className="text-5xl">{Math.round(resultat?.main.temp)}°C</h1> 
+                        <h1 className="text-5xl font-mono">{Math.round(resultat?.main.temp)}°C</h1> 
                         <h2 className="text-center">{resultat?.weather[0].description}</h2>
                     </div>
                 </div>
 
-                <div className="flex">
-                    <div className="w-1/4 text-center flex flex-col items-center ">
+                <div className="flex ">
+                    <div className="w-1/4 text-center flex flex-col items-center">
                     <Image 
                             src="/pressure.png" 
                             alt="pression" 
                             title="Pression Athmospherique"
                             width={20} 
                             height={20} 
-                            className="mb-1" 
+                            className="" 
                         />
 
-                    <p className="text-sm">{resultat?.main.pressure} hPa</p></div>
+                    <p className="text-sm text-center">{resultat?.main.pressure} hPa</p></div>
                     <div className="w-1/4 text-center flex flex-col items-center">
                         <Image 
                             src="/humidity.png" 
@@ -186,9 +188,9 @@ return(
                             title="Humidité en pourcentage"
                             width={20} 
                             height={20} 
-                            className="mb-1" 
+                            className="" 
                         />
-                        <p className="text-sm">{resultat?.main.humidity}%</p>
+                        <p className="text-sm text-center">{resultat?.main.humidity}%</p>
                     </div>
                     <div className="w-1/4 text-center flex flex-col items-center">
                     <Image 
@@ -199,24 +201,24 @@ return(
                             title="Vitesse du vent"
                             className="" 
                         />
-                    <p className="text-sm">{resultat?.wind.speed} km/h</p></div>
+                    <p className="text-sm text-center">{resultat?.wind.speed} km</p></div>
                     <div className="w-1/4 text-center flex flex-col items-center">
                     <Image 
                             src="/visibility.png" 
-                            alt="visibilité en mettre" 
+                            alt="visibilité en kilometre mettre" 
                             width={20} 
                             height={20} 
-                            title="Visibilité en mettre"
+                            title="Visibilité en km"
                             className="" 
                         />
-                    <p className="text-sm">{resultat?.visibility} m</p></div> 
+                    <p className="text-sm text-center">{resultat?.visibility/1000} km</p></div> 
                 </div>
             </div>
 
         ) :
         resultat && resultat.cod === "404" ? (
             <div className="text-center">
-                <p>Opps !! ville non trouver , essayer avec une autre orthographe</p>
+                <p>Opps !! ville non trouvée , essayez avec une autre orthographe</p>
             </div>
         ):
         (

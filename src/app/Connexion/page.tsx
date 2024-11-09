@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export default function Connexion() {
 
-  const [login, setLogin] = useState<{ username: string; password: string }>({ username: '', password: '' });
+  const [login, setLogin] = useState<{ username: string; password: string , profil : string}>({ username: '', password: '',profil:'' });
   const [erreur , seterreur] = useState<string | null> (null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -23,11 +23,8 @@ export default function Connexion() {
         const value = JSON.parse(localStorage.getItem(key) as string)
         if((login.username === key ) && login.username === value.username && login.password === value.password){
           console.log(`utilisateur trouvé ${key} password= ${value.password}`)
-          router.push(
-            '/Dashbord');
-            const utilisateurConnecter = login
-            sessionStorage.setItem('utilisateur connecter' , JSON.stringify(utilisateurConnecter))
-
+          sessionStorage.setItem('utilisateur connecter' , JSON.stringify(value))
+          router.push('/Dashbord');
           break
         }
         else {
@@ -35,15 +32,14 @@ export default function Connexion() {
           seterreur("nom d'utilisateur ou mot de passe incorrect")
           setTimeout(() => {
             seterreur(null);
-          }, 3000);
-          setLogin({username : '' , password : ''})
+          }, 1000);
           
         }
         
       }
       
     }
-    setLogin({username : '' , password : ''})
+  
   }
 
     

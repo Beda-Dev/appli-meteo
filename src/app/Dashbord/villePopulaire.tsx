@@ -55,10 +55,10 @@ export default function Villepopulaire() {
   }, []);
 
   return (
-    <div className="p-2 text-white  rounded-2xl bg-white bg-opacity-10">
+    <div className="py-2 pt-2 pr-5 mr-1 mt-0 text-white max-w-full h-[250px] rounded-3xl bg-white bg-opacity-10">
         <div className='flex items-center justify-center'>
-            <h2 className="text-xl mr-auto">Villes Populaires</h2>
-            <h3 className='pl-5 text-sm opacity-50 ml-auto hover:opacity-100'>voir plus</h3>
+            <h2 className="text-xl mr-auto p-2">Villes Populaires</h2>
+            <h3 className='pl-5 text-sm opacity-50 ml-auto hover:opacity-100'><button>voir plus</button></h3>
         </div>
      
       <ul className='text-sm'>

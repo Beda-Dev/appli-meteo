@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
-import { update } from "./saveUser";
+import { update , Login } from "./saveUser";
 import { useRouter } from "next/navigation";
 
 
@@ -22,6 +22,7 @@ export default function Inscription() {
 
   //useState pour la photo de profil
   const [visualisation , SetVisualisation] = useState <string | null>(null)
+  const [imageChoisi, setImageChoisi] = useState<File>(new File([], "fichier_vide.txt", { type: "text/plain" }));
   
 
 
@@ -31,6 +32,7 @@ export default function Inscription() {
   let url
   const affichage_Image = (e:React.ChangeEvent<HTMLInputElement>) =>{
     const fichierChoisi = e.target.files?.[0]
+    setImageChoisi(fichierChoisi as File)
     if (fichierChoisi) {
        url = URL.createObjectURL(fichierChoisi);
       SetVisualisation(url);
@@ -41,7 +43,7 @@ export default function Inscription() {
 
 
 
-  const [valeurUtilisateur, setValeurUtilisateur] = useState<{ username: string; password: string ; profil : string}>({ username: '', password: '', profil : '' });
+  const [valeurUtilisateur, setValeurUtilisateur] = useState<{ username: string; password: string ; profil : File | string}>({ username: '', password: '', profil :""});
   const [verificationPassword, setVerificationPassword] = useState<string>('');
   const [erreurpassword , setErreurpassword] = useState<string | null >(null)
 
@@ -51,14 +53,13 @@ export default function Inscription() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (valeurUtilisateur.username.trim() && valeurUtilisateur.password.trim() && (valeurUtilisateur.password === verificationPassword)) {
-      valeurUtilisateur.profil = visualisation as string //url vers l'image selectionner
+      valeurUtilisateur.profil =  imageChoisi //url vers l'image selectionner
       update(valeurUtilisateur);
+      Login(valeurUtilisateur)
       setValeurUtilisateur({username : '' , password : '' , profil :''})
       setVerificationPassword('')
-      SetVisualisation(null)
+      SetVisualisation('')
       router.push('/Dashbord')
-      const utilisateurConnecter = valeurUtilisateur
-      sessionStorage.setItem('utilisateur connecter' , JSON.stringify(utilisateurConnecter))
       
     } else {
       window.alert("Mot de passe incohérent");
@@ -66,7 +67,7 @@ export default function Inscription() {
       setTimeout(()=>{
         setErreurpassword(null)
       },5000)
-      setValeurUtilisateur({username : '' , password : '' , profil :''})
+      setValeurUtilisateur({username : '' , password : '' , profil : new File([], "fichier_vide.txt", { type: "text/plain" })})
     }
   };
 
