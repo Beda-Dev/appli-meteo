@@ -240,7 +240,7 @@ export default function Graph({ ville }: Props) {
             <Line
               type="monotone"
               dataKey="temp"
-              stroke="orange"  // Pas de ligne visible ici, elle est "cachée" sous l'aire
+              stroke="orange"  
               dot={false}
               name="Température (°C)"
             />
@@ -250,7 +250,7 @@ export default function Graph({ ville }: Props) {
               stroke="gray"
               name="Pluie (mm)"
               dot={({ cx, cy, index }) => (
-                <CustomDot cx={cx} cy={cy} value={{ icon: weatherData.icon[index] }} />
+                <CustomDot cx={cx} cy={cy} value={{ icon: weatherData.icon[index] }} key={index}/>
               )}
             />
           </LineChart>
