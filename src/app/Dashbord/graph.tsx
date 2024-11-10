@@ -7,7 +7,8 @@ interface CustomDotPayload {
   icon: string;
 }
 
-interface CustomDotProps extends DotProps { payload: CustomDotPayload;}
+
+interface CustomDotProps extends DotProps { value: CustomDotPayload }
 
 
 interface ReponseApiOpenweather {
@@ -127,8 +128,9 @@ export default function Graph({ ville }: Props) {
 
   }
 
-  const CustomDot: React.FC<CustomDotProps> = ({ cx, cy, payload }) => {
-     const imageUrl = `https://openweathermap.org/img/wn/${payload.icon}.png`; 
+  const CustomDot: React.FC<CustomDotProps> = ({ cx, cy, value }) => {
+    if (!value) return null;
+     const imageUrl = `https://openweathermap.org/img/wn/${value.icon}.png`; 
      return ( 
      <image 
       x={cx! - 50 / 2} 
@@ -247,7 +249,9 @@ export default function Graph({ ville }: Props) {
               dataKey="rain"                                                  
               stroke="gray"
               name="Pluie (mm)"
-              dot={<CustomDot />} 
+              dot={({ cx, cy, index }) => (
+                <CustomDot cx={cx} cy={cy} value={{ icon: weatherData.icon[index] }} />
+              )}
             />
           </LineChart>
         </ResponsiveContainer>
