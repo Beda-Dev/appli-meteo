@@ -140,7 +140,7 @@ export default function Prevision({ ville }: Props) {
                 <div className="">
                     <div className="flex my-1">
                         <h2 className="ml-3">Prévisions </h2>
-                        <ul className="menu menu-horizontal bg-blue-900 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm px-[0] py-[0]">
+                        <ul className="menu menu-horizontal bg-blue-900 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm flex p-0">
                             <li><button
                                  onClick={() => setJourSelectionne(3)}
                                 className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]">3 jours</button> </li>

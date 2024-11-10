@@ -182,7 +182,7 @@ export default function Graph({ ville }: Props) {
     <div className="w-[820px] max-h-[324px] rounded-3xl p-8 bg-white bg-opacity-20 text-white">
       <div className="flex justify-between">
         <h2>Résumé</h2>
-        <ul className="menu menu-horizontal bg-base-200 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm px-[0] py-[0] ">
+        <ul className="menu menu-horizontal bg-base-200 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm flex p-0 ">
           <li><button className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]">Resumer</button> </li>
           <li><button className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]" onClick={changement}>Horaire</button></li>
           <li><button className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]">plus de details</button></li>
