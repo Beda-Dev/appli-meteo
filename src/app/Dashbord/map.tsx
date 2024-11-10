@@ -11,7 +11,6 @@ export default function Maps({ Ville , MessageUpdate }: Props ) {
 
     const [coordonnéMAPS, setCoordonnéMAPS] = useState<{ lat: number; lng: number } | null>(null);
     const [newcoordinates, setNewCoordinates] = useState<{ lat: number; lng: number }>();
-    const [erreur, setError] = useState<string | null>(null);
     const [address , setAddress] = useState<string |null>()
     const API={
         key : process.env.NEXT_PUBLIC_API_KEY_MAPS as string,
@@ -37,24 +36,28 @@ export default function Maps({ Ville , MessageUpdate }: Props ) {
 
         useEffect(()=>{
             const recherche= async (newcoordinates : cood)=>{
+                const API={
+                    key : process.env.NEXT_PUBLIC_API_KEY_MAPS as string,
+                    url : process.env.NEXT_PUBLIC_API_URL_MAPS as string
+                }
 
                 try {
                     const reponse = await fetch(`${API.url}=${newcoordinates?.lat},${newcoordinates?.lng}&key=${API.key}`)
                     const donnee = await reponse.json();
-                    if (donnee.status === 'OK') {
-                        const formattedAddress:string = donnee.results[0]?.formatted_address || 'Adresse non trouvée';
+                    if (donnee.status === 'OK' && donnee.results[0]?.formatted_address) {
+                        const formattedAddress:string = donnee.results[0]?.formatted_address
                         const Villerecherché = formattedAddress.split(",")
                         setAddress(Villerecherché[1]);
                         MessageUpdate(address as string)
                         console.table(Villerecherché[1].trim())
-                      } else {
-                        setError('Erreur de géocodage : ' + donnee.status);}
+                        
+                      }
     
     
                 } catch (error) {
     
-                    setError(`Erreur lors de la requête API , description =${error}`)
-                    console.log(erreur)
+                    window.alert(`Erreur lors de la requête API , description =${error}`)
+                    console.log(error)
                     
                 }
 
@@ -67,7 +70,7 @@ export default function Maps({ Ville , MessageUpdate }: Props ) {
 
 
 
-          },[newcoordinates])
+          },[newcoordinates,address,MessageUpdate])
 
           
 

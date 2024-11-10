@@ -104,7 +104,7 @@ export default function Dashbord() {
 
                 </div>
                 <div className="col-start-4 row-start-2 mr-2">
-                <ListeVille />
+                <ListeVille ville={ville} />
                     
                 </div>
                 <div className="col-start-2 row-start-3 mb-3">

@@ -8,6 +8,11 @@ interface reponseUtile{
     icon : string
 }
 
+interface props{
+
+  ville : string
+}
+
 const grandesVilles = [
     "Le Caire", "Lagos", "Kinshasa", "Nairobi", "Abidjan", "Addis-Abeba", "Alger", "Casablanca", "Johannesburg", "Lusaka",
     "Shanghai", "Beijing", "Tokyo", "Delhi", "Mumbai", "Karachi", "Istanbul", "Manille", "Seoul", "Bangkok",
@@ -41,7 +46,7 @@ const fetchWeatherData = async (ville: string) => {
   };
 };
 
-export default function Villepopulaire() {
+export default function Villepopulaire({ville}:props) {
   const [weatherData, setWeatherData] = useState<reponseUtile[]>([]);
 
   useEffect(() => {
@@ -52,7 +57,7 @@ export default function Villepopulaire() {
     };
 
     fetchWeatherPourLesVilles();
-  }, []);
+  }, [ville]);
 
   return (
     <div className="py-2 pt-2 pr-5 mr-1 mt-0 text-white max-w-full h-[250px] rounded-3xl bg-white bg-opacity-10">
