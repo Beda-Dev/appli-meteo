@@ -140,7 +140,7 @@ export default function Weather({ville} : props){
 
 return(
 
-<div className=" text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl max-w-[500px] max-h-[250px] min-h-[250px] p-2">
+<div className=" text-white rounded-3xl bg-white bg-opacity-10 backdrop-blur-2xl max-w-[275px] h-[250px] p-2">
     <h1 className="pl-3 mt-0 text-2xl italic">Météo actuelle </h1>
 
     <div className="pb-1">

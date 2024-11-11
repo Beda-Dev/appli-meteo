@@ -86,7 +86,7 @@ export default function Connexion() {
 
                 type="submit"  
                 className="rounded-lg p-2 w-full bg-blue-500 text-white hover:bg-white hover:text-black">Se connecter</button>
-              <p className="mt-4">Vous navez pas de compte ?</p>
+              <p className="mt-4">{"Vous n'avez pas de compte ?"}</p>
               <Link href="/Inscription" className="underline">
                 inscrire
               </Link>
