@@ -158,11 +158,11 @@ return(
                         src={`/${resultat?.weather[0].icon}.png`} 
                         
                         alt="meteo"
-                        width={50} 
-                        height={50} 
-                        className="w-40 h-40 m-[-20]" 
+                        width={140} 
+                        height={144.72} 
+                        className="w-44 h-44 m-[-20]" 
                     />
-                    <div className="max-w-full max-h-full text-left pl-4 flex flex-col justify-top-left">
+                    <div className="max-w-full max-h-full text-left pl-4 flex flex-col justify-start">
                         <h4>{resultat?.name}, {resultat?.sys.country}</h4>
                         <h1 className="text-5xl font-mono">{Math.round(resultat?.main.temp)}°C</h1> 
                         <h2 className="text-center">{resultat?.weather[0].description}</h2>
@@ -224,6 +224,7 @@ return(
         (
             <div className="text-center">
                 <p> Chargement...</p>
+                <span className="loading loading-spinner loading-lg"></span>
             </div>
         )}
     </div>

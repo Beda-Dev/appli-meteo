@@ -127,7 +127,8 @@ export default function Prevision({ ville }: Props) {
     const filteredPrevisions = previsionsParJour.slice(0, jourSelectionne)
 
     if (loading) {
-        return <div className=" rounded-3xl text-white p-2 h-80  w-72 bg-white bg-opacity-20">Chargement des données...</div>;
+        return <div className=" rounded-3xl text-white text-center p-2 h-80  w-72 bg-white bg-opacity-20">
+            <span className="loading loading-spinner loading-lg"></span></div>;
     }
 
     if (error) {
@@ -140,13 +141,13 @@ export default function Prevision({ ville }: Props) {
                 <div className="">
                     <div className="flex my-1">
                         <h2 className="ml-3">Prévisions </h2>
-                        <ul className="menu menu-horizontal bg-blue-900 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm flex h-[24px]">
+                        <ul className="menu menu-horizontal bg-blue-900 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm px-[1] py-[1]">
                             <li><button
                                  onClick={() => setJourSelectionne(3)}
-                                className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]">3 jours</button> </li>
+                                className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2" style={{paddingTop:"1px",paddingBottom:"1px"}}>3 jours</button> </li>
                             <li><button 
                                  onClick={() => setJourSelectionne(previsionsParJour.length)}
-                                className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 py-[1]">6 jours</button></li>
+                                className="ml-auto hover:bg-blue-900 hover:bg-opacity-80 rounded-sm px-2 " style={{paddingTop:"1px",paddingBottom:"1px"}}>6 jours</button></li>
                             
                         </ul>
                         

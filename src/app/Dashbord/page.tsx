@@ -80,7 +80,7 @@ export default function Dashbord() {
                         </div>
                         <div className="absolute bottom-6 right-5 bg-transparent flex mr-5">
                         <Image src="/alarm.png" alt="Logo" width={35} height={35}  className="mr-4 rounded-full hover:bg-blue-900"/>
-                            <div className="avatar online w-[35px] h-[35px]">
+                            <div className="avatar online">
                                 <div className="w-[35px] h-[35px] rounded-full">
                                 <Image 
                                 src={photo as string || "/icon-img.png"}
