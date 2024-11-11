@@ -42,7 +42,7 @@ export default function Dashbord() {
         setUtilisateurconnecter(utilisateurConnecte)
         if (utilisateurconnecter?.profil) {
             setPhoto(utilisateurconnecter.profil);
-        }
+        }else{setPhoto("/icon-img.png")}
     }, [utilisateurconnecter.profil]);
 
     return ( 

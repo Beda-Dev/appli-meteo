@@ -127,16 +127,16 @@ export default function Prevision({ ville }: Props) {
     const filteredPrevisions = previsionsParJour.slice(0, jourSelectionne)
 
     if (loading) {
-        return <div className=" rounded-3xl text-white text-center p-2 h-80  w-72 bg-white bg-opacity-20">
+        return <div className="rounded-3xl text-white p-2 max-h-[275px] min-h-[324px] max-w-72 h-90 bg-white bg-opacity-20">
             <span className="loading loading-spinner loading-lg"></span></div>;
     }
 
     if (error) {
-        return <div className=" rounded-3xl text-white text-center p-2  h-80 w-72 bg-white bg-opacity-20">{error}</div>;
+        return <div className="rounded-3xl text-white p-2 max-h-[275px] min-h-[324px] max-w-72 h-90 bg-white bg-opacity-20">{error}</div>;
     }
 
     return (
-        <div className="rounded-3xl text-white p-2 max-h-[324px] min-h-[324px] max-w-72 h-90 bg-white bg-opacity-20">
+        <div className="rounded-3xl text-white p-2 max-h-[275px] min-h-[324px] max-w-72 h-90 bg-white bg-opacity-20">
             {resultat ? (
                 <div className="">
                     <div className="flex my-1">
