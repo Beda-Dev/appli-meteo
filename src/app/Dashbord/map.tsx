@@ -105,18 +105,18 @@ export default function Maps({ Ville , MessageUpdate }: Props ) {
     }, [Ville]);
 
     const dimension = {
-        width: '540px',
+        width: '100%',
         height: '250px'
     };
 
     return (
-        <div>
+        <div className="min-w-[540px] w-full">
             <LoadScript googleMapsApiKey={API.key}>
                 <GoogleMap
                     mapContainerStyle={dimension}
                     center={coordonnéMAPS || { lat: 5.3094, lng: -4.0197 }} 
                     zoom={10}
-                    mapContainerClassName="rounded-3xl"
+                    mapContainerClassName="rounded-3xl w-full"
                     onClick={handleMapClick}
                     
 
