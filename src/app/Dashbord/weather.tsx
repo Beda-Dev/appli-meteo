@@ -160,7 +160,7 @@ return(
                         alt="meteo"
                         width={140} 
                         height={144.72} 
-                        className="w-44 h-44 m-[-20]" 
+                        className="m-[-20]" 
                     />
                     <div className="max-w-full max-h-full text-left pl-4 flex flex-col justify-start">
                         <h4>{resultat?.name}, {resultat?.sys.country}</h4>
