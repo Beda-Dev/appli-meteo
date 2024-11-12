@@ -14,13 +14,14 @@ interface props{
 }
 
 const grandesVilles = [
-    "Le Caire", "Lagos", "Kinshasa", "Nairobi", "Abidjan", "Addis-Abeba", "Alger", "Casablanca", "Johannesburg", "Lusaka",
+    "Le Caire", "Lagos", "Nairobi", "Abidjan", "Addis-Abeba", "Alger", "Casablanca", "Johannesburg", "Lusaka",
     "Shanghai", "Beijing", "Tokyo", "Delhi", "Mumbai", "Karachi", "Istanbul", "Manille", "Seoul", "Bangkok",
     "Moscou", "Londres", "Berlin", "Paris", "Madrid", "Rome", "Amsterdam", "Athènes", "Warsaw", "Lisbonne",
     "New York", "Los Angeles", "Chicago", "Mexico City", "Toronto", "Vancouver", "Montreal", "Houston", "Miami", "San Francisco",
     "São Paulo", "Buenos Aires", "Rio de Janeiro", "Lima", "Bogotá", "Santiago", "Caracas", "Quito", "Montevideo", "Brasilia",
     "Sydney", "Melbourne", "Brisbane", "Auckland", "Perth", "Wellington", "Adélaïde", "Canberra", "Hobart", "Christchurch",
-    "Riyad", "Dubaï", "Istanbul", "Téhéran", "Bagdad", "Le Caire"
+    "Riyad", "Dubaï", "Istanbul", "Téhéran", "Bagdad", "Le Caire","Lagos","Le Caire","Kinshasa","Nairobi","Addis-Abeba",
+    "Dakar","Dar es Salaam","Khartoum","Accra","Abuja","Tunis","Luanda","Antananarivo","Maputo"
   ];
   
 
@@ -60,7 +61,7 @@ export default function Villepopulaire({ville}:props) {
   }, [ville]);
 
   return (
-    <div className="py-2 pt-2 pr-5 mr-1 mt-0 text-white max-w-full h-[250px] rounded-3xl bg-white bg-opacity-10">
+    <div className="py-2 pt-2 pr-5 mr-1 mt-0 text-white min-w-full  h-[250px] rounded-xl bg-white bg-opacity-10">
         <div className='flex items-center justify-center'>
             <h2 className="text-xl mr-auto p-2">Villes Populaires</h2>
             <h3 className='pl-5 text-sm opacity-50 ml-auto hover:opacity-100'><button>voir plus</button></h3>

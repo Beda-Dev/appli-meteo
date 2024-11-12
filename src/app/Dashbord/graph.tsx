@@ -204,17 +204,17 @@ export default function Graph({ ville }: Props) {
   };
 
   if (loading) {
-    return <div className="rounded-3xl text-white p-2 max-w-[820px] max-h-[324px] text-center"><span className="loading loading-spinner loading-lg"></span></div>;
+    return <div className="rounded-xl text-white p-2 max-w-[820px] max-h-[324px] text-center"><span className="loading loading-spinner loading-lg"></span></div>;
   }
 
   if (error) {
-    return <div className="rounded-3xl text-white text-center p-2 w-[820px] max-h-[324px] bg-white bg-opacity-20 mr-2">{error}</div>;
+    return <div className="rounded-xl text-white text-center p-2 w-[820px] max-h-[324px] bg-white bg-opacity-20 mr-2">{error}</div>;
   }
 
   const weatherData = resultat ? transformWeatherData(resultat) : { labels: [], rainData: [], temperature: [], icon: [] , description : []};
 
   return (
-    <div className="w-full h-[324px] rounded-3xl p-8 bg-white bg-opacity-20 text-white">
+    <div className="w-full h-[324px] rounded-xl p-8 bg-white bg-opacity-20 text-white">
       <div className="flex justify-between">
         <h2>Résumé</h2>
         <ul className="menu menu-horizontal bg-base-200 rounded-lg bg-white bg-opacity-30 ml-auto rounded-sm  text-white " style={{padding:'1px'}}>

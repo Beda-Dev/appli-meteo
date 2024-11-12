@@ -51,7 +51,7 @@ export default function Dashbord() {
         <Image src="/cloud.png" alt="Logo" width={300} height={300} className="absolute mx-auto  top-[-180px] left-[-130px] z-5" />
         <Image src="/cloud.png" alt="Logo" width={200} height={200} className="absolute mx-auto rotate-[-25deg] top-[-50px] right-[10%] z-5" />
 
-                <div className=" bg-black bg-opacity-20 backdrop-blur-md rounded-3xl grid grid-max-cols-[64px_300px_630px_300px] grid-max-row-[256px_256px_256px] gap-2 overflow-hidden z-10">
+                <div className=" bg-black bg-opacity-20 backdrop-blur-md rounded-xl grid grid-max-cols-[64px_300px_630px_300px] grid-max-row-[256px_256px_256px] gap-2 overflow-hidden z-10">
                 
                             
                 <div className="text-center bg-black bg-opacity-5  text-white w-16 h-full rounded-lg p-1 row-start-1 col-start-1 row-span-3 mb-4  border-none text-white first-glass relative">

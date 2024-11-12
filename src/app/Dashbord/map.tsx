@@ -116,7 +116,7 @@ export default function Maps({ Ville , MessageUpdate }: Props ) {
                     mapContainerStyle={dimension}
                     center={coordonnéMAPS || { lat: 5.3094, lng: -4.0197 }} 
                     zoom={10}
-                    mapContainerClassName="rounded-3xl w-full"
+                    mapContainerClassName="rounded-xl w-full"
                     onClick={handleMapClick}
                     
 
