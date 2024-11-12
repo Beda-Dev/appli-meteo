@@ -149,7 +149,7 @@ export default function Weather({ ville }: props) {
                 height={144.72}
                 className="m-[-20] w-[140px] h-[144px]"
               />
-              <div className="max-w-full max-h-full text-left pl-10 flex flex-col justify-start">
+              <div className="max-w-full max-h-full text-left flex flex-col justify-start">
                 <h4 className="text-center" >
                   {resultat?.name}, {resultat?.sys.country}
                 </h4>
