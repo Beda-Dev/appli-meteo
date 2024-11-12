@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState ,useEffect } from "react";
 import { update, Login } from "./saveUser";
 import { useRouter } from "next/navigation";
 
@@ -39,6 +39,7 @@ export default function Inscription() {
   }>({ username: "", password: "", profil: "" });
   const [verificationPassword, setVerificationPassword] = useState<string>("");
   const [erreurpassword, setErreurpassword] = useState<string | null>(null);
+  const [darkmode , setDarkmode] = useState<boolean>(false)
 
   const router = useRouter();
 
@@ -76,6 +77,20 @@ export default function Inscription() {
     setValeurUtilisateur((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  useEffect(() => {
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setDarkmode(darkModeQuery.matches);
+    const handleDarkModeChange = (event: MediaQueryListEvent) => {
+        setDarkmode(event.matches);
+    };
+
+    darkModeQuery.addEventListener('change', handleDarkModeChange);
+
+    return () => {
+        darkModeQuery.removeEventListener('change', handleDarkModeChange);
+    };
+}, []);
+
   return (
     <div className="flex justify-center items-center h-screen font-sans bg-gradient-to-r from-blue-500 to-indigo-600">
       <div className="flex justify-center items-center gap-8 text-white px-10 py-8 w-50 rounded-lg bg-transparent-blur-sm shadow-2xl">
@@ -96,7 +111,7 @@ export default function Inscription() {
             type="file"
             name="photo"
             id="photo"
-            className="hidden"
+            className="hidden "
             ref={inputcacher}
             accept="image/*"
             onChange={affichage_Image}
@@ -125,7 +140,7 @@ export default function Inscription() {
               onChange={handleChange}
               id="username"
               placeholder="Nom d'utilisateur"
-              className="mt-1 block w-full p-2 border rounded-md text-black text-center"
+              className={`mt-1 block w-full ${darkmode? 'text-white':'text-black'} p-2 border rounded-md  text-center `}
             />
           </div>
           <div className="password mb-4">
@@ -139,7 +154,7 @@ export default function Inscription() {
               value={valeurUtilisateur.password}
               onChange={handleChange}
               id="password"
-              className="mt-1 block w-full p-2 border text-black rounded-md text-center"
+              className={`mt-1 block w-full ${darkmode? 'text-white':'text-black'} p-2 border rounded-md  text-center `}
             />
             <p className="mt-2">Entrez à nouveau votre mot de passe</p>
             <input
@@ -149,7 +164,7 @@ export default function Inscription() {
               value={verificationPassword}
               onChange={(e) => setVerificationPassword(e.target.value)}
               id="verificationPassword"
-              className="mt-1 block w-full p-2 border text-black rounded-md text-center"
+              className={`mt-1 block w-full ${darkmode? 'text-white':'text-black'} p-2 border rounded-md  text-center `}
             />
           </div>
           {erreurpassword && <h5 className="text-red-500">{erreurpassword}</h5>}

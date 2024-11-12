@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, ReferenceLine, Tooltip, ResponsiveContainer, Text, Area,DotProps, YAxis } from "recharts";
+import { LineChart, Line, XAxis, ReferenceLine, Tooltip, ResponsiveContainer, Text, Area ,DotProps, YAxis } from "recharts";
 
 
 
@@ -87,9 +87,9 @@ export default function Graph({ ville }: Props) {
   const [change , setChange] = useState<boolean >(false)
   const [change1 , setChange1]= useState<boolean>(false)
   const [change2 , setChange2] = useState<boolean>(false)
-  const [couleur , setCouleur] = useState<string>('#FFFF')
-  const [couleur1 , setCouleur1] = useState<string>('#FFFF')
-  const [couleur2 , setCouleur2] = useState<string>('#FFFF')
+  const [couleur , setCouleur] = useState<string>('transparent')
+  const [couleur1 , setCouleur1] = useState<string>('transparent')
+  const [couleur2 , setCouleur2] = useState<string>('transparent')
   const [activeIndex, setActiveIndex] = useState<number>()
 
   useEffect(() => {
@@ -239,6 +239,7 @@ export default function Graph({ ville }: Props) {
       </div>
       <div className=" w-full h-full">
         <ResponsiveContainer width="100%" height="100%">
+            
           <LineChart data={weatherData.temperature.map((temp, index) => ({
             temp,
             heure: weatherData.labels[index],
@@ -249,10 +250,12 @@ export default function Graph({ ville }: Props) {
 
             <defs>
               <linearGradient id="temperatureGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="ywhite" stopOpacity={1} />
+                <stop offset="0%" stopColor="green" stopOpacity={1} />
                 <stop offset="100%" stopColor="red" stopOpacity={0.9} /> 
               </linearGradient>
             </defs>
+
+            
             <YAxis
                 tick={{ fill: `${couleur2}`, fontSize: 12 }}  
                 stroke={couleur2} 
@@ -311,6 +314,7 @@ export default function Graph({ ville }: Props) {
             <Line
               type="monotone"
               dataKey="temp"
+              fill="url(#temperatureGradient)"  
               stroke="orange"  
               dot={false}
               name="Température (°C)"

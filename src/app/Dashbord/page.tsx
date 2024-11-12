@@ -23,6 +23,7 @@ export default function Dashbord() {
     const [photo , setPhoto] = useState<string>()
     const [ville , setVille] = useState<string>("abidjan")
     const [utilisateurconnecter , setUtilisateurconnecter] = useState<utilisateur>({username : '',password : '' , profil : ''})
+    const [darkmode , setDarkmode] = useState<boolean>(false)
 
     const handleKeyDown = (event : React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
@@ -35,6 +36,20 @@ export default function Dashbord() {
     const VilleReçu = (VilleMaps: string) => {
         setVille(VilleMaps);
     };
+
+    useEffect(() => {
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        setDarkmode(darkModeQuery.matches);
+        const handleDarkModeChange = (event: MediaQueryListEvent) => {
+            setDarkmode(event.matches);
+        };
+
+        darkModeQuery.addEventListener('change', handleDarkModeChange);
+
+        return () => {
+            darkModeQuery.removeEventListener('change', handleDarkModeChange);
+        };
+    }, []);
 
 
     useEffect(() => {
@@ -51,7 +66,7 @@ export default function Dashbord() {
         <Image src="/cloud.png" alt="Logo" width={300} height={300} className="absolute mx-auto  top-[-180px] left-[-130px] z-5" />
         <Image src="/cloud.png" alt="Logo" width={200} height={200} className="absolute mx-auto rotate-[-25deg] top-[-50px] right-[10%] z-5" />
 
-                <div className=" bg-black bg-opacity-20 backdrop-blur-md rounded-xl grid grid-max-cols-[64px_300px_630px_300px] grid-max-row-[256px_256px_256px] gap-2 overflow-hidden z-10">
+                <div className=" bg-black bg-opacity-20 backdrop-blur-md rounded-3xl grid grid-max-cols-[64px_300px_630px_300px] grid-max-row-[256px_256px_256px] gap-2 overflow-hidden z-10">
                 
                             
                 <div className="text-center bg-black bg-opacity-5  text-white w-16 h-full rounded-lg p-1 row-start-1 col-start-1 row-span-3 mb-4  border-none text-white first-glass relative">
@@ -74,7 +89,7 @@ export default function Dashbord() {
                                 onChange={(e) => setNomVille(e.target.value)}
                                 onKeyDown={handleKeyDown}
                                 placeholder="Search for location"
-                                className="w-full h-12 bg-black rounded-lg text-center text-white pr-12 pl-11 bg-opacity-20 shadow-sm"
+                                className={`w-full h-12 bg-black rounded-lg ${darkmode? 'text-white':'text-white'} text-white pr-12 pl-11 bg-opacity-20 shadow-sm`}
                             />
                             <Image src="/loupe.png" alt="Logo" width={22} height={22} className="absolute top-3 left-1 opacity-50" />
                         </div>
